@@ -1,6 +1,8 @@
 package com.nickinfinity.sizzlebite;
 
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +24,8 @@ public class IntroductoryActivity extends AppCompatActivity {
     private static final int NUM_PAGES = 2 ;
     private ViewPager viewPager;
     private ScreenSlidePageAdaper screenSlidePageAdaper;
+    Animation anim;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,9 @@ public class IntroductoryActivity extends AppCompatActivity {
         screenSlidePageAdaper = new ScreenSlidePageAdaper(getSupportFragmentManager());
         viewPager.setAdapter(screenSlidePageAdaper);
 
+        //fade anim
+        anim = AnimationUtils.loadAnimation(this, R.anim.fade_anim);
+        viewPager.startAnimation(anim);
 
         // Animate
         img_bg.animate().translationY(-2900).setDuration(1000).setStartDelay(4000);
